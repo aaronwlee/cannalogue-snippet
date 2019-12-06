@@ -25,6 +25,6 @@ async function svgGenerator(template: string, destination: string, source: strin
   fs.writeFileSync(path.join(destination, `index.${type}`), indexString)
 }
 
-const indexing = (componentName: string, componentPath: string) => `export { default as ${componentName} } from '${componentPath}';\n`
+const indexing = (componentName: string, componentPath: string) => `export { default as ${componentName} } from './${componentName}';\n`
 
 export default svgGenerator;

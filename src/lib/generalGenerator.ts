@@ -54,6 +54,6 @@ const ${name} = ({}) => {
 
 export default ${name}`
 
-const indexing = (componentName: string, componentPath: string) => `export { default as ${componentName} } from '${componentPath}';\n`
+const indexing = (componentName: string, componentPath: string) => `export { default as ${componentName} } from './${componentName}';\n`
 
 export default generalGenerator;
