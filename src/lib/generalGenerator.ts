@@ -12,7 +12,7 @@ async function generalGenerator(componentPath: string, index: boolean) {
   const componentName: string = getName(componentPath);
   const folderPath: string = getFolderPath(componentPath);
 
-  fs.writeFileSync(componentPath, componentType === "tsx" ? tsx(componentName) : jsx(componentName))
+  fs.writeFileSync(componentPath, componentType === ".tsx" ? tsx(componentName) : jsx(componentName))
   if (index) {
     const listOfFiles = fs.readdirSync(path.join(folderPath))
     const listOfFilesByTypes = listOfFiles.filter(e => path.extname(e).toLowerCase() === `${componentType}`)

@@ -8,7 +8,7 @@ shell.config.silent = true;
 async function componentGenerator(componentPath: string) {
   const componentType: string = getType(componentPath);
   const componentName: string = getName(componentPath);
-  fs.writeFileSync(componentPath, componentType === "tsx" ? tsx(componentName) : jsx(componentName))
+  fs.writeFileSync(componentPath, componentType === ".tsx" ? tsx(componentName) : jsx(componentName))
 }
 
 const tsx = (name: string) =>

@@ -20,7 +20,7 @@ function componentGenerator(componentPath) {
     return __awaiter(this, void 0, void 0, function* () {
         const componentType = getter_1.getType(componentPath);
         const componentName = getter_1.getName(componentPath);
-        fs_1.default.writeFileSync(componentPath, componentType === "tsx" ? tsx(componentName) : jsx(componentName));
+        fs_1.default.writeFileSync(componentPath, componentType === ".tsx" ? tsx(componentName) : jsx(componentName));
     });
 }
 const tsx = (name) => `import React from 'react';

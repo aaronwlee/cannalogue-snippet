@@ -37,6 +37,6 @@ function svgGenerator(template, destination, source, type) {
         fs_1.default.writeFileSync(path_1.default.join(destination, `index.${type}`), indexString);
     });
 }
-const indexing = (componentName, componentPath) => `export { default as ${componentName} } from '${componentPath}';\n`;
+const indexing = (componentName, componentPath) => `export { default as ${componentName} } from './${componentName}';\n`;
 exports.default = svgGenerator;
 //# sourceMappingURL=svgGenerator.js.map
