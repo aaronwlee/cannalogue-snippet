@@ -28,7 +28,7 @@ commander_1.default
     .action((componentFullPath) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         logger_1.default.info("Generate the general component into", `'${path_1.default.join(process.cwd(), componentFullPath)}'`);
-        componentGenerator_1.default(componentFullPath);
+        yield componentGenerator_1.default(componentFullPath);
     }
     catch (err) {
         logger_1.default.error(err);
@@ -47,7 +47,7 @@ commander_1.default
             choices: ["Yes", "No"]
         });
         logger_1.default.info("Generate the general component into", `'${path_1.default.join(process.cwd(), componentFullPath)}'`, `and index rewiring: '${answer.index}'`);
-        generalGenerator_1.default(componentFullPath, answer.index === "Yes" ? true : false);
+        yield generalGenerator_1.default(componentFullPath, answer.index === "Yes" ? true : false);
     }
     catch (err) {
         logger_1.default.error(err);
@@ -57,10 +57,15 @@ commander_1.default
     .command('svg')
     .arguments('<template> [destination] [source] [type]')
     .description('generate file based on file type')
-    .action((template, destination, source, type) => {
+    .action((template, destination, source, type) => __awaiter(void 0, void 0, void 0, function* () {
     //  template: string, destination: string, source: string, type: string
-    logger_1.default.info("Convert svg file to react component", `template: '${template}'`, `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`);
-    svgGenerator_1.default(template, destination, source, type);
-});
+    try {
+        logger_1.default.info("Convert svg file to react component", `template: '${template}'`, `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`);
+        yield svgGenerator_1.default(template, destination, source, type);
+    }
+    catch (err) {
+        logger_1.default.error(err);
+    }
+}));
 commander_1.default.parse(process.argv);
 //# sourceMappingURL=index.js.map

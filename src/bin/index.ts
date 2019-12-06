@@ -17,7 +17,7 @@ program
   .action(async (componentFullPath: string) => {
     try {
       logger.info("Generate the general component into", `'${path.join(process.cwd(), componentFullPath)}'`)
-      componentGenerator(componentFullPath)
+      await componentGenerator(componentFullPath)
     } catch (err) {
       logger.error(err)
     }
@@ -36,7 +36,7 @@ program
         choices: ["Yes", "No"]
       })
       logger.info("Generate the general component into", `'${path.join(process.cwd(), componentFullPath)}'`, `and index rewiring: '${answer.index}'`)
-      generalGenerator(componentFullPath, answer.index === "Yes" ? true : false)
+      await generalGenerator(componentFullPath, answer.index === "Yes" ? true : false)
     } catch (err) {
       logger.error(err)
     }
@@ -46,10 +46,14 @@ program
   .command('svg')
   .arguments('<template> [destination] [source] [type]')
   .description('generate file based on file type')
-  .action((template: string, destination: string, source: string, type: string) => {
+  .action(async (template: string, destination: string, source: string, type: string) => {
     //  template: string, destination: string, source: string, type: string
-    logger.info("Convert svg file to react component", `template: '${template}'`, `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`)
-    svgGenerator(template, destination, source, type)
+    try {
+      logger.info("Convert svg file to react component", `template: '${template}'`, `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`)
+      await svgGenerator(template, destination, source, type)
+    } catch(err) {
+      logger.error(err)
+    }
   });
 
 program.parse(process.argv);
