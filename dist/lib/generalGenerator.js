@@ -28,7 +28,9 @@ function generalGenerator(componentPath, index) {
             const listOfFilesByTypes = listOfFiles.filter(e => path_1.default.extname(e).toLowerCase() === `${componentType}`);
             let indexString = "";
             listOfFilesByTypes.forEach(e => {
-                indexString += indexing(getter_1.getName(e), e);
+                if (getter_1.getName(e) !== "index") {
+                    indexString += indexing(getter_1.getName(e));
+                }
             });
             fs_1.default.writeFileSync(path_1.default.join(folderPath, `index${componentType}`), indexString);
         }
@@ -60,6 +62,6 @@ const ${name} = ({}) => {
 }
 
 export default ${name}`;
-const indexing = (componentName, componentPath) => `export { default as ${componentName} } from './${componentName}';\n`;
+const indexing = (componentName) => `export { default as ${componentName} } from './${componentName}';\n`;
 exports.default = generalGenerator;
 //# sourceMappingURL=generalGenerator.js.map

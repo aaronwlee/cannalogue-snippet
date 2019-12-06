@@ -20,11 +20,13 @@ async function svgGenerator(template: string, destination: string, source: strin
   const listOfFilesByTypes = listOfFiles.filter(e => path.extname(e).toLowerCase() === `.${type}`)
   let indexString = ""
   listOfFilesByTypes.forEach(e => {
-    indexString += indexing(getName(e), e)
+    if(getName(e) !== "index") {
+      indexString += indexing(getName(e))
+    }
   })
   fs.writeFileSync(path.join(destination, `index.${type}`), indexString)
 }
 
-const indexing = (componentName: string, componentPath: string) => `export { default as ${componentName} } from './${componentName}';\n`
+const indexing = (componentName: string) => `export { default as ${componentName} } from './${componentName}';\n`
 
 export default svgGenerator;

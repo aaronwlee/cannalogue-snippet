@@ -18,7 +18,9 @@ async function generalGenerator(componentPath: string, index: boolean) {
     const listOfFilesByTypes = listOfFiles.filter(e => path.extname(e).toLowerCase() === `${componentType}`)
     let indexString = ""
     listOfFilesByTypes.forEach(e => {
-      indexString += indexing(getName(e), e)
+      if(getName(e) !== "index") {
+        indexString += indexing(getName(e))
+      }
     })
     fs.writeFileSync(path.join(folderPath, `index${componentType}`), indexString)
   }
@@ -54,6 +56,6 @@ const ${name} = ({}) => {
 
 export default ${name}`
 
-const indexing = (componentName: string, componentPath: string) => `export { default as ${componentName} } from './${componentName}';\n`
+const indexing = (componentName: string) => `export { default as ${componentName} } from './${componentName}';\n`
 
 export default generalGenerator;
