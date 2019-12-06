@@ -7,10 +7,10 @@ import { getName } from '../utils/getter';
 
 shell.config.silent = true;
 
-async function svgGenerator(template: string, destination: string, source: string, type: string) {
+async function svgGenerator(destination: string, source: string, type: string) {
   //npx @svgr/cli --template resources/SvgrTemplate.js --ext tsx -d resources/svgComponents resources/svgs
   if (shell.which('npx')) {
-    await waitCommand(`npx @svgr/cli --template ${template} --ext ${type} -d ${destination} ${source}`, () => logger.info(`convert svg to ${type} has successfully done!`))
+    await waitCommand(`npx @svgr/cli --svgo-config ${path.join(__dirname, "../../svgo.config.json")} --template ${path.join(__dirname, "../../template.js")} --ext ${type} -d ${destination} ${source}`, () => logger.info(`convert svg to ${type} has successfully done!`))
   }
   else {
     throw "Can't find npx!! please install npm or update!"
@@ -20,7 +20,7 @@ async function svgGenerator(template: string, destination: string, source: strin
   const listOfFilesByTypes = listOfFiles.filter(e => path.extname(e).toLowerCase() === `.${type}`)
   let indexString = ""
   listOfFilesByTypes.forEach(e => {
-    if(getName(e) !== "index") {
+    if (getName(e) !== "index") {
       indexString += indexing(getName(e))
     }
   })

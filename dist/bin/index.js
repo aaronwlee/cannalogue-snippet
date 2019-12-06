@@ -55,13 +55,13 @@ commander_1.default
 }));
 commander_1.default
     .command('svg')
-    .arguments('<template> [destination] [source] [type]')
+    .arguments('<destination> [source] [type]')
     .description('generate file based on file type')
-    .action((template, destination, source, type) => __awaiter(void 0, void 0, void 0, function* () {
+    .action((destination, source, type) => __awaiter(void 0, void 0, void 0, function* () {
     //  template: string, destination: string, source: string, type: string
     try {
-        logger_1.default.info("Convert svg file to react component", `template: '${template}'`, `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`);
-        yield svgGenerator_1.default(template, destination, source, type);
+        logger_1.default.info("Convert svg file to react component", `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`);
+        yield svgGenerator_1.default(destination, source, type);
     }
     catch (err) {
         logger_1.default.error(err);

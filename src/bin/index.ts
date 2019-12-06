@@ -44,13 +44,13 @@ program
 
 program
   .command('svg')
-  .arguments('<template> [destination] [source] [type]')
+  .arguments('<destination> [source] [type]')
   .description('generate file based on file type')
-  .action(async (template: string, destination: string, source: string, type: string) => {
+  .action(async (destination: string, source: string, type: string) => {
     //  template: string, destination: string, source: string, type: string
     try {
-      logger.info("Convert svg file to react component", `template: '${template}'`, `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`)
-      await svgGenerator(template, destination, source, type)
+      logger.info("Convert svg file to react component", `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`)
+      await svgGenerator(destination, source, type)
     } catch(err) {
       logger.error(err)
     }

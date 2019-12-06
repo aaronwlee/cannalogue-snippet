@@ -19,11 +19,11 @@ const fs_1 = __importDefault(require("fs"));
 const spinner_1 = __importDefault(require("../utils/spinner"));
 const getter_1 = require("../utils/getter");
 shelljs_1.default.config.silent = true;
-function svgGenerator(template, destination, source, type) {
+function svgGenerator(destination, source, type) {
     return __awaiter(this, void 0, void 0, function* () {
         //npx @svgr/cli --template resources/SvgrTemplate.js --ext tsx -d resources/svgComponents resources/svgs
         if (shelljs_1.default.which('npx')) {
-            yield spinner_1.default(`npx @svgr/cli --template ${template} --ext ${type} -d ${destination} ${source}`, () => logger_1.default.info(`convert svg to ${type} has successfully done!`));
+            yield spinner_1.default(`npx @svgr/cli --svgo-config ${path_1.default.join(__dirname, "../../svgo.config.json")} --template ${path_1.default.join(__dirname, "../../template.js")} --ext ${type} -d ${destination} ${source}`, () => logger_1.default.info(`convert svg to ${type} has successfully done!`));
         }
         else {
             throw "Can't find npx!! please install npm or update!";
