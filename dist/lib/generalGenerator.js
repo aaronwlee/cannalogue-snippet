@@ -30,7 +30,7 @@ function generalGenerator(componentPath, index) {
             listOfFilesByTypes.forEach(e => {
                 indexString += indexing(getter_1.getName(e), e);
             });
-            fs_1.default.writeFileSync(path_1.default.join(folderPath, `index${componentType}`), componentType === "tsx" ? tsx(componentName) : jsx(componentName));
+            fs_1.default.writeFileSync(path_1.default.join(folderPath, `index${componentType}`), indexString);
         }
     });
 }

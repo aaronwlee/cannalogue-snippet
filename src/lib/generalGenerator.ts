@@ -20,7 +20,7 @@ async function generalGenerator(componentPath: string, index: boolean) {
     listOfFilesByTypes.forEach(e => {
       indexString += indexing(getName(e), e)
     })
-    fs.writeFileSync(path.join(folderPath, `index${componentType}`), componentType === "tsx" ? tsx(componentName) : jsx(componentName))
+    fs.writeFileSync(path.join(folderPath, `index${componentType}`), indexString)
   }
 }
 
