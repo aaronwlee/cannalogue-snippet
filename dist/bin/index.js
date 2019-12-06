@@ -55,13 +55,14 @@ commander_1.default
 }));
 commander_1.default
     .command('svg')
-    .arguments('<destination> [source] [type]')
+    .arguments('<config> [template] [destination] [source] [type]')
     .description('generate file based on file type')
-    .action((destination, source, type) => __awaiter(void 0, void 0, void 0, function* () {
+    .action((config, template, destination, source, type) => __awaiter(void 0, void 0, void 0, function* () {
     //  template: string, destination: string, source: string, type: string
     try {
-        logger_1.default.info("Convert svg file to react component", `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`);
-        yield svgGenerator_1.default(destination, source, type);
+        logger_1.default.info("Convert svg file to react component");
+        logger_1.default.info(`npx @svgr/cli --svgo-config ${config} --template ${template} --ext ${type} -d ${destination} ${source}'`);
+        yield svgGenerator_1.default(config, template, destination, source, type);
     }
     catch (err) {
         logger_1.default.error(err);

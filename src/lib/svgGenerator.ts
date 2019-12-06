@@ -5,12 +5,10 @@ import fs from 'fs';
 import waitCommand from '../utils/spinner';
 import { getName } from '../utils/getter';
 
-shell.config.silent = true;
-
-async function svgGenerator(destination: string, source: string, type: string) {
+async function svgGenerator(config: string, template: string, destination: string, source: string, type: string) {
   //npx @svgr/cli --template resources/SvgrTemplate.js --ext tsx -d resources/svgComponents resources/svgs
   if (shell.which('npx')) {
-    await waitCommand(`npx @svgr/cli --svgo-config ${path.resolve(__dirname, "../../svgo.config.json")} --template ${path.resolve(__dirname, "../../template.js")} --ext ${type} -d ${destination} ${source}`, () => logger.info(`convert svg to ${type} has successfully done!`))
+    await waitCommand(`npx @svgr/cli --svgo-config ${config} --template ${template} --ext ${type} -d ${destination} ${source}`, () => logger.info(`convert svg to ${type} has successfully done!`))
   }
   else {
     throw "Can't find npx!! please install npm or update!"

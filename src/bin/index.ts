@@ -44,14 +44,15 @@ program
 
 program
   .command('svg')
-  .arguments('<destination> [source] [type]')
+  .arguments('<config> [template] [destination] [source] [type]')
   .description('generate file based on file type')
-  .action(async (destination: string, source: string, type: string) => {
+  .action(async (config: string, template: string, destination: string, source: string, type: string) => {
     //  template: string, destination: string, source: string, type: string
     try {
-      logger.info("Convert svg file to react component", `destination: '${destination}'`, `source: '${source}'`, `type: '${type}'`)
-      await svgGenerator(destination, source, type)
-    } catch(err) {
+      logger.info("Convert svg file to react component")
+      logger.info(`npx @svgr/cli --svgo-config ${config} --template ${template} --ext ${type} -d ${destination} ${source}'`)
+      await svgGenerator(config, template, destination, source, type)
+    } catch (err) {
       logger.error(err)
     }
   });
