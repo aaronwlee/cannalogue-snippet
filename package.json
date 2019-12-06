@@ -1,0 +1,31 @@
+{
+  "name": "cannalogue-snippets",
+  "version": "1.0.0",
+  "description": "Snippet tool for react",
+  "main": "index.js",
+  "author": "Aaron Wooseok Lee",
+  "license": "MIT",
+  "bin": {
+    "ca": "./dist/bin/index.js"
+  },
+  "scripts": {
+    "ca": "node ./dist/bin/index.js"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^6.5.0",
+    "@types/node": "^12.12.8",
+    "@types/shelljs": "^0.8.6",
+    "ts-node": "^8.5.0",
+    "typescript": "^3.7.2",
+    "@types/cli-spinner": "^0.2.0",
+    "@types/commander": "^2.12.2"
+  },
+  "dependencies": {
+    
+    "chalk": "^3.0.0",
+    "cli-spinner": "^0.2.10",
+    "commander": "^4.0.1",
+    "inquirer": "^7.0.0",
+    "shelljs": "^0.8.3"
+  }
+}
